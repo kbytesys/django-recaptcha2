@@ -3,10 +3,10 @@ from django.forms.widgets import Widget
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
 
-class ReCaptcha(Widget):
+class ReCaptchaWidget(Widget):
     def __init__(self, explicit=False, theme=None, type=None, size=None, tabindex=None, callback=None,
                  expired_callback=None, attrs={}, *args, **kwargs):
-        super(ReCaptcha, self).__init__(*args, **kwargs)
+        super(ReCaptchaWidget, self).__init__(*args, **kwargs)
         self.explicit = explicit
         self.theme = theme
         self.type = type

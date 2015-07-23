@@ -18,7 +18,7 @@ class ReCaptchaField(forms.CharField):
         response_token = values[0]
 
         try:
-            r = requests.put(
+            r = requests.post(
                 'https://www.google.com/recaptcha/api/siteverify',
                 {
                     'secret': settings.RECAPTCHA_PRIVATE_KEY,
@@ -34,12 +34,12 @@ class ReCaptchaField(forms.CharField):
             )
 
         json_response = r.json()
-
-        if json_response.success:
+        print(json_response)
+        if bool(json_response['success']):
             return values[0]
         else:
-            if 'missing-input-secret' in json_response.error_codes.keys or \
-                    'invalid-input-secret' in json_response.error_codes.keys:
+            if 'missing-input-secret' in json_response['error-codes'] or \
+                    'invalid-input-secret' in json_response['error-codes']:
 
                 logger.exception('Invalid reCaptcha secret key detected')
                 raise ValidationError(
