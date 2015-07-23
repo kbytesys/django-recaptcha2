@@ -10,7 +10,7 @@ setup(
         'Django>=1.7',
         'requests'
     ],
-    description='reCaptcha v2 support for Django >= 1.7',
+    description='Django reCaptcha v2 field/widget',
     author='Andrea Briganti',
     author_email='kbytesys@gmail.com',
     url='https://github.com/kbytesys/django-recaptcha2',
