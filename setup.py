@@ -4,8 +4,8 @@ setup(
     name='django-recaptcha2',
     packages=find_packages(exclude=['samples']),
     # package_data={'': ['']},
-    # include_package_data=True,
-    version='0.1.0',
+    include_package_data=True,
+    version='0.1.4',
     install_requires=[
         'Django>=1.7',
         'requests'
@@ -14,7 +14,7 @@ setup(
     author='Andrea Briganti',
     author_email='kbytesys@gmail.com',
     url='https://github.com/kbytesys/django-recaptcha2',
-    download_url='https://github.com/kbytesys/django-recaptcha2/tarball/v0.1.0',
+    download_url='https://github.com/kbytesys/django-recaptcha2/tarball/v0.1.4',
     keywords=['django', 'recaptcha', 'recaptcha2'],
     license='GNU LGPL v2',
     classifiers=[
