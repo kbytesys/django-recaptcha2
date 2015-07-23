@@ -1,0 +1,19 @@
+{% load recaptcha2 %}
+<html>
+  <head>
+      {% recaptcha_explicit_support %}
+  </head>
+  <body>
+    <form action="{% url 'form1_post' %}" method="POST">
+      {% csrf_token %}
+      {{ form1 }}
+      <input type="submit" value="Submit">
+    </form>
+    <form action="{% url 'form2_post' %}" method="POST">
+      {% csrf_token %}
+      {{ form2 }}
+      <input type="submit" value="Submit">
+    </form>
+    {% recaptcha_explicit_init %}
+  </body>
+</html>

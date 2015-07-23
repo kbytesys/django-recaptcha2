@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 setup(
     name='django-recaptcha2',
-    packages=find_packages(),
+    packages=find_packages(exclude=['samples']),
     # package_data={'': ['']},
     # include_package_data=True,
     version='0.1.0',
@@ -18,7 +18,7 @@ setup(
     keywords=['django', 'recaptcha', 'recaptcha2'],
     license='GNU LGPL v2',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: GNU Lesser General Public License v2 (LGPLv2)',

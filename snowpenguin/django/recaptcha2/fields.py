@@ -34,7 +34,7 @@ class ReCaptchaField(forms.CharField):
             )
 
         json_response = r.json()
-        print(json_response)
+
         if bool(json_response['success']):
             return values[0]
         else:

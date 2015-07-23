@@ -1,0 +1,14 @@
+{% load recaptcha2 %}
+<html>
+  <head>
+    {% recaptcha_explicit_support %}
+  </head>
+  <body>
+    <form action="?" method="POST">
+      {% csrf_token %}
+      {{ form }}
+      <input type="submit" value="Submit">
+    </form>
+    {% recaptcha_explicit_init %}
+  </body>
+</html>
