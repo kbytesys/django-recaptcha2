@@ -62,12 +62,12 @@ Warning: the app doesn't validate the incoming parameter values.
 ### Templating
 You can use some template tags to simplify the reCaptcha adoption:
  
-* recaptcha_init: add the script tag for reCaptcha api. You have to put this tag somewhere in your <head> element
+* recaptcha_init: add the script tag for reCaptcha api. You have to put this tag somewhere in your "head" element
 * recaptcha_explicit_init: add the script tag for the reCaptcha api with explicit render support. You have to put this
-  tag somewhere above the end of your <body> element. If you use this tag, you don't have to use "recaptcha_init".
+  tag somewhere above the end of your "body" element. If you use this tag, you don't have to use "recaptcha_init".
 * recaptcha_explicit_support: this tag add the callback function used by reCaptcha for explicit rendering. This tag also
   add some funcitions and javascript vars used by the ReCaptchaWidget when it is initialized with explicit=True. You have
-  to put this tag somewhere in your <head> element.
+  to put this tag somewhere in your "head" element.
 * recaptcha_key: if you want to use reCaptcha manually in your template, you will need the sitekey (a.k.a. public api key).
   This tag returns a string with the configured public key.
   
