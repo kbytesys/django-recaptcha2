@@ -1,0 +1,17 @@
+<div id="{{ container_id }}"></div>
+<script>
+    django_recaptcha_callbacks.push(function() {
+        grecaptcha.render('{{ container_id }}', {
+        {% spaceless %}
+            {% if theme %}'theme': '{{ theme }}',{% endif %}
+            {% if ctype %}'type': '{{ ctype }}',{% endif %}
+            {% if size %}'size': '{{ size }}',{% endif %}
+            {% if tabindex %}'tabindex': '{{ tabindex }}',{% endif %}
+            {% if callback %}'callback': '{{ callback }}',{% endif %}
+            {% if expired_callback %}'expired-callback': '{{ expired_callback }}',{% endif %}
+            'sitekey': '{{ public_key }}'
+        {% endspaceless %}
+        })
+            }
+    );
+</script>

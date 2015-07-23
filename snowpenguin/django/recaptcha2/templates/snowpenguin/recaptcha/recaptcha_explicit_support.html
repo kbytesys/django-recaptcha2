@@ -1,0 +1,9 @@
+<script>
+    var django_recaptcha_callbacks = []
+
+    var djangoRecaptchaOnLoadCallback = function() {
+        django_recaptcha_callbacks.forEach(function(callback) {
+            callback();
+        });
+    }
+</script>
