@@ -4,7 +4,7 @@
         grecaptcha.render('{{ container_id }}', {
         {% spaceless %}
             {% if theme %}'theme': '{{ theme }}',{% endif %}
-            {% if ctype %}'type': '{{ ctype }}',{% endif %}
+            {% if type %}'type': '{{ type }}',{% endif %}
             {% if size %}'size': '{{ size }}',{% endif %}
             {% if tabindex %}'tabindex': '{{ tabindex }}',{% endif %}
             {% if callback %}'callback': '{{ callback }}',{% endif %}
