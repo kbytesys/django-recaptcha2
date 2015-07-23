@@ -148,21 +148,22 @@ You can use the app explicit render support also is you implement reCaptcha in o
 ```django
 {% load recaptcha2 %}
 <html>
-  <head>
-    {% recaptcha_explicit_support %}
-  </head>
-  <body>
-    [...]
-    <div id='recaptcha'></div>
-    django_recaptcha_callbacks.push(function() {
-            grecaptcha.render('recaptcha', {
-                'theme': 'dark',
-                'sitekey': '{% recaptcha_key %}'
-            })
-        }
-    );
-    [...]
-    {% recaptcha_explicit_init %}
-  </body>
+    <head>
+        {% recaptcha_explicit_support %}
+    </head>
+    <body>
+        [...]
+        <div id='recaptcha'></div>
+        <script>
+            django_recaptcha_callbacks.push(function() {
+                grecaptcha.render('recaptcha', {
+                    'theme': 'dark',
+                    'sitekey': '{% recaptcha_key %}'
+                })
+            });
+        </script>
+        [...]
+        {% recaptcha_explicit_init %}
+    </body>
 </html>
 ```
