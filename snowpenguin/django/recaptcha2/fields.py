@@ -1,4 +1,5 @@
 import logging
+import os
 
 from django import forms
 from django.conf import settings
@@ -14,6 +15,11 @@ class ReCaptchaField(forms.CharField):
         super(ReCaptchaField, self).__init__(*args, **kwargs)
 
     def clean(self, values):
+
+        # Disable the check if we run a test unit
+        if os.environ.get('RECAPTCHA_DISABLE', None) is not None:
+            return values[0]
+
         super(ReCaptchaField, self).clean(values[0])
         response_token = values[0]
 

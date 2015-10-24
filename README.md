@@ -73,6 +73,17 @@ You can use some template tags to simplify the reCaptcha adoption:
   
 You can use the form as usual.
 
+### Test unit support
+You can't simulate api calls in your test, but you can disable the recaptcha field and let your test works.
+
+Just set the RECAPTCHA_DISABLE env variable in your test:
+
+```python
+os.environ['RECAPTCHA_DISABLE'] = 'True'
+```
+
+Warning: you can use any word in place of "True", the clean function will check only if the variable exists.
+
 ## Samples
 ### Simple render example
 
@@ -166,4 +177,25 @@ You can use the app explicit render support also is you implement reCaptcha in o
         {% recaptcha_explicit_init %}
     </body>
 </html>
+```
+
+### Test unit with recaptcha2 disabled
+```python
+import os
+import unittest
+
+from yourpackage.forms import MyForm
+
+class TestCase(unittest.TestCase):
+    def setUp(self):
+        os.environ['RECAPTCHA_DISABLE'] = 'True'
+
+    def test_myform(self):
+        form = MyForm({
+            'field1': 'field1_value'
+        })
+        self.assertTrue(form.is_valid())
+
+    def tearDown(self):
+        del os.environ['RECAPTCHA_DISABLE']
 ```
