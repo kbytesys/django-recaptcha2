@@ -38,6 +38,9 @@ If you have to create the apikey for the domains managed by your django project,
 You can simply create a reCaptcha enabled form with the field provided by this app:
 
 ```python
+from snowpenguin.django.recaptcha2.fields import ReCaptchaField
+from snowpenguin.django.recaptcha2.widgets import ReCaptchaWidget
+
 class ExampleForm(forms.Form):
     [...]
     captcha = ReCaptchaField(widget=ReCaptchaWidget())
