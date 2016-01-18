@@ -1,1 +1,1 @@
-<script src="https://www.google.com/recaptcha/api.js{% if explicit %}?onload=djangoRecaptchaOnLoadCallback&render=explicit{% endif %}" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js{% if explicit %}?onload=djangoRecaptchaOnLoadCallback&render=explicit{% if language %}&hl={{ language }}{% endif %}{% elif language %}?hl={{ language }}{% endif %}" async defer></script>

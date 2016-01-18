@@ -76,6 +76,28 @@ You can use some template tags to simplify the reCaptcha adoption:
   
 You can use the form as usual.
 
+### Force widget language
+You can disable the language auto-detection in the recaptha2 init tag:
+
+```django
+{% load recaptcha2 %}
+<html>
+  <head>
+      {% recaptcha_init 'es' %}
+  </head>
+```
+
+or
+
+```django
+    </form>
+    {% recaptcha_explicit_init 'es'%}
+  </body>
+</html>
+```
+
+For language codes take a look to <a href="https://developers.google.com/recaptcha/docs/language">this page</a>.
+
 ### Test unit support
 You can't simulate api calls in your test, but you can disable the recaptcha field and let your test works.
 
