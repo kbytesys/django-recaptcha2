@@ -44,14 +44,20 @@ class ReCaptchaField(forms.CharField):
         if bool(json_response['success']):
             return values[0]
         else:
-            if 'missing-input-secret' in json_response['error-codes'] or \
-                    'invalid-input-secret' in json_response['error-codes']:
+            if 'error-codes' in json_response:
+                if 'missing-input-secret' in json_response['error-codes'] or \
+                        'invalid-input-secret' in json_response['error-codes']:
 
-                logger.exception('Invalid reCaptcha secret key detected')
-                raise ValidationError(
-                    _('Connection to reCaptcha server failed')
-                )
+                    logger.exception('Invalid reCaptcha secret key detected')
+                    raise ValidationError(
+                        _('Connection to reCaptcha server failed')
+                    )
+                else:
+                    raise ValidationError(
+                        _('reCaptcha invalid or expired, try again')
+                    )
             else:
+                logger.exception('No error-codes received from Google reCaptcha server')
                 raise ValidationError(
-                    _('reCaptcha invalid or expired, try again')
+                    _('reCaptcha response from Google not valid, try again')
                 )
