@@ -11,6 +11,10 @@ setup(
         'Django>=1.7',
         'requests'
     ],
+    tests_require=(
+        'django-setuptest',
+    ),
+    test_suite='setuptest.setuptest.SetupTestSuite',
     description='Django reCaptcha v2 field/widget',
     author='Andrea Briganti',
     author_email='kbytesys@gmail.com',
