@@ -20,4 +20,4 @@ class TestRecaptchaForm(TestCase):
         self.assertTrue(form.is_valid())
 
     def tearDown(self):
-        del os.environ['RECAPTCHA_TESTING']
+        del os.environ['RECAPTCHA_DISABLE']

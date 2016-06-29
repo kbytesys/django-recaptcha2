@@ -1,11 +1,18 @@
 language: python
 python:
-  - "2.7"
-  - "3.3"
-  - "3.4"
-  - "3.5"
+- '2.7'
+- '3.4'
+- '3.5'
 install:
-  - pip install tox-travis
-  - python setup.py -q install
+- pip install tox-travis
+- python setup.py -q install
 script:
-  - tox
+- tox
+deploy:
+  provider: pypi
+  user: kbyte
+  distributions: sdist bdist_wheel
+  password:
+    secure: otCLiaoPb3cxnTNDM2pmz4IrnUukeTOVOlHjZArR91dhluP+86fBPpPfRJmC6vtUCX+uIhRzEAFos8QSiCcuSaOYTARz/9eWBFN/NElvrMUjXdWxN/t5IASAsLGIFFO3z0rSjUUkS3CUNE3pD40cRr+ainpZc+lgw3cS6STAWaj3h6znwFvxijOsEnYv7NwqCEqrQb0sfRUI+fRn++2dDQeS2NY1VFiGL2Q43isaEqGBJsHWwAWrTsfjmj1OiwOdwlBJ+dbZFMzur3bYr6O79oVG98WNnO94f+YYGXa3cQ3X5+leWq/JbVcyk++r6FlkH1lb9zRqzmVn706U9R2Fxpykl5lvD500MwrSibvEEVo7jmZq3WK353YQop9LU7uacPZwqu85QLrrGzV789WNzrq9NJgAxALue9qzWbn4Hk2EkkE8qi0njFpTdkSmSW/1sPMou3HN3n1GE8k9DoUj0RhU1eROC3Th/KoW9y1R60EsLzG6o3yQ82Z+V2giKM0gZ5hiS6JX6jcvtVuzzr2tYWDjSE6o72eRipCYfgiku7TAmMKVfHvOkHv0BXe8HRljEZn6IdwsRp0vI+fXUvNtJCvPRXHq+5+SGuvQtiq12moKky9TJ8EXvr+QRt0V56cdMYWadaHhfDDSw8CGlZHd0FdVfuSUM9bR5Xgk30N8jI8=
+  on:
+    tags: true
