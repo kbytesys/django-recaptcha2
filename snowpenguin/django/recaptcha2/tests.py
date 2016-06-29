@@ -19,5 +19,10 @@ class TestRecaptchaForm(TestCase):
         form = RecaptchaTestForm({})
         self.assertTrue(form.is_valid())
 
+    def test_dummy_error(self):
+        del os.environ['RECAPTCHA_DISABLE']
+        form = RecaptchaTestForm({})
+        self.assertFalse(form.is_valid())
+
     def tearDown(self):
         del os.environ['RECAPTCHA_DISABLE']
