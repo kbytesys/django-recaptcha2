@@ -3,6 +3,7 @@ from django.forms.widgets import Widget
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
 
+
 class ReCaptchaWidget(Widget):
     def __init__(self, explicit=False, theme=None, type=None, size=None, tabindex=None, callback=None,
                  expired_callback=None, attrs={}, *args, **kwargs):
@@ -35,4 +36,3 @@ class ReCaptchaWidget(Widget):
 
     def value_from_datadict(self, data, files, name):
         return [data.get('g-recaptcha-response', None)]
-

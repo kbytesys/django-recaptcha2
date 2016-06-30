@@ -10,6 +10,7 @@ import requests
 
 logger = logging.getLogger(__name__)
 
+
 class ReCaptchaField(forms.CharField):
     def __init__(self, attrs={}, *args, **kwargs):
         super(ReCaptchaField, self).__init__(*args, **kwargs)
