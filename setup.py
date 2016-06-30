@@ -23,7 +23,7 @@ setup(
     keywords=['django', 'recaptcha', 'recaptcha2'],
     license='GNU LGPL v2',
     classifiers=[
-        'Devlopment Status :: 5 - Production/Stable',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: GNU Lesser General Public License v2 (LGPLv2)',
