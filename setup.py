@@ -16,6 +16,8 @@ setup(
     ),
     test_suite='setuptest.setuptest.SetupTestSuite',
     description='Django reCaptcha v2 field/widget',
+    long_description='This integration app implements a recaptcha field for Google reCaptcha v2'
+                     ' with explicit rendering and multiple recaptcha support.',
     author='Andrea Briganti',
     author_email='kbytesys@gmail.com',
     url='https://github.com/kbytesys/django-recaptcha2',
