@@ -6,7 +6,7 @@ setup(
     namespace_packages = ['snowpenguin', 'snowpenguin.django'],
     # package_data={'': ['']},
     include_package_data=True,
-    version='0.1.8',
+    version='1.0.0',
     install_requires=[
         'Django>=1.7',
         'requests'
@@ -19,11 +19,11 @@ setup(
     author='Andrea Briganti',
     author_email='kbytesys@gmail.com',
     url='https://github.com/kbytesys/django-recaptcha2',
-    download_url='https://github.com/kbytesys/django-recaptcha2/tarball/v0.1.8',
+    download_url='https://github.com/kbytesys/django-recaptcha2/tarball/v1.0.0',
     keywords=['django', 'recaptcha', 'recaptcha2'],
     license='GNU LGPL v2',
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Devlopment Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: GNU Lesser General Public License v2 (LGPLv2)',
