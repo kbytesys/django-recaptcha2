@@ -1,7 +1,7 @@
 # Django reCaptcha v2 [![Build Status](https://travis-ci.org/kbytesys/django-recaptcha2.svg?branch=master)](https://travis-ci.org/kbytesys/django-recaptcha2)
 ----
 
-This integration app implements a recaptcha field for <a href=https://developers.google.com/recaptcha/intro">Google reCaptcha v2</a>
+This integration app implements a recaptcha field for <a href="https://developers.google.com/recaptcha/intro">Google reCaptcha v2</a>
 with explicit rendering and multiple recaptcha support.
 
 ----
