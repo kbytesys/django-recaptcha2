@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 setup(
     name='django-recaptcha2',
-    packages=find_packages(exclude=['samples']),
+    packages=find_packages(exclude=['samples'], include=['snowpenguin', 'snowpenguin.django', 'snowpenguin.django.*']),
     namespace_packages = ['snowpenguin', 'snowpenguin.django'],
     # package_data={'': ['']},
     include_package_data=True,
