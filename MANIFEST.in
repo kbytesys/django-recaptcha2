@@ -1,3 +1,5 @@
 include LICENSE
+include snowpenguin/__init__.py
+include snowpenguin/django/__init.py
 recursive-include snowpenguin/django/recaptcha2/templates *.html
 recursive-include snowpenguin/django/recaptcha2/locale *.mo
