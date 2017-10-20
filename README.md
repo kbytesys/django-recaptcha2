@@ -55,7 +55,7 @@ class ReCaptchaWidget(Widget):
                  expired_callback=None, attrs={}, *args, **kwargs):
 ```
 
-If you set the explicit boolean to true, you will render this field with explicit render support. This is usefull if you
+If you set the explicit boolean to true, you will render this field with explicit render support. This is useful if you
 want to use multiple forms with reCaptcha in one page. Take a look to template and samples sections for more info.
 
 You can personalize reCaptcha theme, type, size, tabindex, callback and expired_callback parameters. Look the reCaptcha
