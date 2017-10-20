@@ -6,7 +6,7 @@ from django.utils.safestring import mark_safe
 
 class ReCaptchaWidget(Widget):
     def __init__(self, explicit=False, theme=None, type=None, size=None, tabindex=None, callback=None,
-                 expired_callback=None, attrs={}, *args, **kwargs):
+                 expired_callback=None, public_key=None, attrs={}, *args, **kwargs):
         super(ReCaptchaWidget, self).__init__(*args, **kwargs)
         self.explicit = explicit
         self.theme = theme
@@ -16,6 +16,7 @@ class ReCaptchaWidget(Widget):
         self.callback = callback
         self.expired_callback = expired_callback
         self.attrs = attrs
+        self._public_key = public_key
 
     def render(self, name, value, attrs=None):
         template = 'snowpenguin/recaptcha/'
@@ -24,7 +25,7 @@ class ReCaptchaWidget(Widget):
         return mark_safe(
             render_to_string(template, {
                 'container_id': 'id_%s' % name,
-                'public_key': settings.RECAPTCHA_PUBLIC_KEY,
+                'public_key': self._public_key or settings.RECAPTCHA_PUBLIC_KEY,
                 'theme': self.theme,
                 'type': self.type,
                 'size': self.size,
