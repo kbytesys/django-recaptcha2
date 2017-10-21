@@ -40,7 +40,7 @@ class ReCaptchaField(forms.CharField):
             r = requests.post(
                 'https://www.google.com/recaptcha/api/siteverify',
                 {
-                    'secret': self.private_key or settings.RECAPTCHA_PRIVATE_KEY,
+                    'secret': self._private_key or settings.RECAPTCHA_PRIVATE_KEY,
                     'response': response_token
                 },
                 timeout=5
