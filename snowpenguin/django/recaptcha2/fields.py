@@ -8,11 +8,23 @@ from django.utils.translation import ugettext_lazy as _
 
 import requests
 
+from snowpenguin.django.recaptcha2.widgets import ReCaptchaWidget
+
 logger = logging.getLogger(__name__)
 
 
 class ReCaptchaField(forms.CharField):
     def __init__(self, attrs={}, *args, **kwargs):
+        self._private_key = kwargs.pop('private_key', None)
+        public_key = kwargs.pop('public_key', None)
+
+        if 'widget' not in kwargs:
+            kwargs['widget'] = ReCaptchaWidget(public_key=public_key)
+        elif 'widget' in kwargs and public_key:
+            logger.warn('`public_key` kwarg supplied to ReCaptchaField constructor '
+                        'but a custom widget was specified. This value will be '
+                        'ignored.')
+
         super(ReCaptchaField, self).__init__(*args, **kwargs)
 
     def clean(self, values):
@@ -28,7 +40,7 @@ class ReCaptchaField(forms.CharField):
             r = requests.post(
                 'https://www.google.com/recaptcha/api/siteverify',
                 {
-                    'secret': settings.RECAPTCHA_PRIVATE_KEY,
+                    'secret': self._private_key or settings.RECAPTCHA_PRIVATE_KEY,
                     'response': response_token
                 },
                 timeout=5
@@ -62,3 +74,4 @@ class ReCaptchaField(forms.CharField):
                 raise ValidationError(
                     _('reCaptcha response from Google not valid, try again')
                 )
+
