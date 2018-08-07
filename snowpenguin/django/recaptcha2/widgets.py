@@ -18,7 +18,7 @@ class ReCaptchaWidget(Widget):
         self.attrs = attrs
         self._public_key = public_key
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, *args, **kwargs):
         template = 'snowpenguin/recaptcha/'
         template += 'recaptcha_explicit.html' if self.explicit else 'recaptcha_automatic.html'
 
