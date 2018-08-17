@@ -7,9 +7,10 @@ from django.utils.safestring import mark_safe
 
 
 class ReCaptchaWidget(Widget):
-    def __init__(self, explicit=False, theme=None, type=None, size=None, tabindex=None, callback=None,
-                 expired_callback=None, public_key=None, attrs={}, *args, **kwargs):
+    def __init__(self, explicit=False, container_id=None, theme=None, type=None, size=None, tabindex=None,
+                 callback=None, expired_callback=None, public_key=None, attrs={}, *args, **kwargs):
         super(ReCaptchaWidget, self).__init__(*args, **kwargs)
+        self.container_id = container_id
         self.explicit = explicit
         self.theme = theme
         self.type = type
@@ -24,8 +25,11 @@ class ReCaptchaWidget(Widget):
         template = 'snowpenguin/recaptcha/'
         template += 'recaptcha_explicit.html' if self.explicit else 'recaptcha_automatic.html'
 
-        # this avoids name collisions when you use multiple recaptcha in the same page with the same field name
-        container_id = 'recaptcha-%s-%s' % (name, randint(10000, 99999)) if self.explicit else 'recaptcha-%s' % name
+        if self.container_id:
+            container_id = self.container_id
+        else:
+            # this avoids name collisions when you use multiple recaptcha in the same page with the same field name
+            container_id = 'recaptcha-%s-%s' % (name, randint(10000, 99999)) if self.explicit else 'recaptcha-%s' % name
 
         return mark_safe(
             render_to_string(template, {

@@ -51,8 +51,8 @@ You can pass some parameters into the widget contructor:
 
 ```python
 class ReCaptchaWidget(Widget):
-    def __init__(self, explicit=False, theme=None, type=None, size=None, tabindex=None, callback=None,
-                 expired_callback=None, attrs={}, *args, **kwargs):
+    def __init__(self, explicit=False, container_id=None, theme=None, type=None, size=None, tabindex=None,
+                 callback=None, expired_callback=None, attrs={}, *args, **kwargs):
 ```
 
 If you set the explicit boolean to true, you will render this field with explicit render support. This is useful if you
@@ -61,6 +61,18 @@ want to use multiple forms with reCaptcha in one page. Take a look to template a
 You can personalize reCaptcha theme, type, size, tabindex, callback and expired_callback parameters. Look the reCaptcha
 <a href="https://developers.google.com/recaptcha/docs/display#config">documentation</a> if you want to change those values.
 Warning: the app doesn't validate the incoming parameter values.
+
+### Recaptcha "container id"
+Now the default container id for the recaptcha is:
+
+* recaptcha-{$fieldname} for the automatic rendering
+* recaptcha-{$fieldname}-{%fiverandomdigits} for the explicit rendering
+
+This avoids name collisions when you use multiple instances of the recaptcha in different forms, but in the same page
+and with the same field name.
+
+**Note:** you can always override the container id with the "container_id" argument in the widget constructor, but take
+care: nobody will check if the id you provide is already used.
 
 ### Templating
 You can use some template tags to simplify the reCaptcha adoption:
