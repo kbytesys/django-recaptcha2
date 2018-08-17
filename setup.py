@@ -7,12 +7,15 @@ def readme():
         return f.read()
 
 
+version = '1.1.0'
+
+
 setup(
     name='django-recaptcha2',
     packages=find_packages(exclude=['samples']),
     # package_data={'': ['']},
     include_package_data=True,
-    version='1.0.3',
+    version=version,
     install_requires=[
         'requests'
     ],
@@ -28,7 +31,7 @@ setup(
     author='Andrea Briganti',
     author_email='kbytesys@gmail.com',
     url='https://github.com/kbytesys/django-recaptcha2',
-    download_url='https://github.com/kbytesys/django-recaptcha2/tarball/v1.0.3',
+    download_url='https://github.com/kbytesys/django-recaptcha2/tarball/v%s' % version,
     keywords=['django', 'recaptcha', 'recaptcha2'],
     license='GNU LGPL v2',
     classifiers=[
@@ -36,7 +39,7 @@ setup(
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: GNU Lesser General Public License v2 (LGPLv2)',
-        'Natural Language :: Italian',
+        'Natural Language :: English',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Framework :: Django',
