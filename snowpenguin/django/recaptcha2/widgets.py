@@ -1,3 +1,5 @@
+from random import randint
+
 from django.conf import settings
 from django.forms.widgets import Widget
 from django.template.loader import render_to_string
@@ -22,9 +24,12 @@ class ReCaptchaWidget(Widget):
         template = 'snowpenguin/recaptcha/'
         template += 'recaptcha_explicit.html' if self.explicit else 'recaptcha_automatic.html'
 
+        # this avoids name collisions when you use multiple recaptcha in the same page with the same field name
+        container_id = 'recaptcha-%s-%s' % (name, randint(10000, 99999)) if self.explicit else 'recaptcha-%s' % name
+
         return mark_safe(
             render_to_string(template, {
-                'container_id': 'id_%s' % name,
+                'container_id': container_id,
                 'public_key': self._public_key or settings.RECAPTCHA_PUBLIC_KEY,
                 'theme': self.theme,
                 'type': self.type,
