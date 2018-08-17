@@ -1,3 +1,5 @@
+include README.txt
+include README.md
 include LICENSE
 recursive-include snowpenguin/django/recaptcha2/templates *.html
 recursive-include snowpenguin/django/recaptcha2/locale *.mo

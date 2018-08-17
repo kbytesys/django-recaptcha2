@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
+
+
+def readme():
+    with open('README.txt') as f:
+        return f.read()
+
+
 setup(
     name='django-recaptcha2',
     packages=find_packages(exclude=['samples']),
@@ -10,13 +17,15 @@ setup(
         'Django>=1.7',
         'requests'
     ],
+    dependency_links=[
+        'git+git://github.com/kbytesys/django-setuptest.git@feature/pep8_config',
+    ],
     tests_require=(
-        'django-setuptest',
+        ['django-setuptest'],
     ),
     test_suite='setuptest.setuptest.SetupTestSuite',
     description='Django reCaptcha v2 field/widget',
-    long_description='This integration app implements a recaptcha field for Google reCaptcha v2'
-                     ' with explicit rendering and multiple recaptcha support.',
+    long_description=readme(),
     author='Andrea Briganti',
     author_email='kbytesys@gmail.com',
     url='https://github.com/kbytesys/django-recaptcha2',
@@ -38,5 +47,5 @@ setup(
         'Operating System :: OS Independent',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Software Development :: Libraries :: Python Modules'
-    ],
+    ]
 )

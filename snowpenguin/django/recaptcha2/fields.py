@@ -74,4 +74,3 @@ class ReCaptchaField(forms.CharField):
                 raise ValidationError(
                     _('reCaptcha response from Google not valid, try again')
                 )
-
