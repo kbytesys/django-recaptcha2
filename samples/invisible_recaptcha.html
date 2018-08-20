@@ -4,7 +4,7 @@
       {% recaptcha_init %}
   </head>
   <body>
-    <form id='myform' action="?" method="POST">
+    <form id='myform1' action="?" method="POST">
       {% csrf_token %}
       {{ form }}
       {% recaptcha_invisible_button submit_label='Submit' %}

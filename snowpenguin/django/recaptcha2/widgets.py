@@ -48,7 +48,7 @@ class ReCaptchaWidget(Widget):
         return [data.get('g-recaptcha-response', None)]
 
 
-class ReCaptchaInvisibleWidget(Input):
+class ReCaptchaHiddenInput(Input):
     input_type = 'hidden'
 
     def render(self, name, value, attrs=None, renderer=None):

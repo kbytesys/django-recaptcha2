@@ -4,7 +4,7 @@ from django.forms import Form
 from django.test import TestCase
 
 from snowpenguin.django.recaptcha2.fields import ReCaptchaField
-from snowpenguin.django.recaptcha2.widgets import ReCaptchaWidget, ReCaptchaInvisibleWidget
+from snowpenguin.django.recaptcha2.widgets import ReCaptchaWidget, ReCaptchaHiddenInput
 
 
 class RecaptchaTestForm(Form):
@@ -12,7 +12,7 @@ class RecaptchaTestForm(Form):
 
 
 class RecaptchaInvisibleTestForm(Form):
-    recaptcha = ReCaptchaField(widget=ReCaptchaInvisibleWidget())
+    recaptcha = ReCaptchaField(widget=ReCaptchaHiddenInput())
 
 
 class TestRecaptchaForm(TestCase):
