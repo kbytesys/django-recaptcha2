@@ -1,0 +1,12 @@
+<button id="recaptcha-invisible-{{ generated_id }}" class="g-recaptcha{% if extra_css_classes %}{{ extra_css_classes }}{% endif %}" data-sitekey="{{ public_key }}" data-callback="recaptcha_onSubmit_{{ generated_id }}">{{ submit_label }}</button>
+<script>
+    function recaptcha_onSubmit_{{ generated_id }}() {
+    {% if form_id %}
+        document.getElementById("{{ form_id }}").submit();
+    {% endif %}
+    {% if not form_id %}
+        var form_element = document.getElementById("recaptcha-invisible-{{ generated_id }}").closest("form");
+        if (form_element) { form_element.submit(); }
+    {% endif %}
+    }
+</script>
