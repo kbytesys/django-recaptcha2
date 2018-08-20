@@ -2,7 +2,8 @@
 ----
 
 This integration app implements a recaptcha field for <a href="https://developers.google.com/recaptcha/intro">Google reCaptcha v2</a>
-with explicit rendering and multiple recaptcha support.
+with explicit rendering and multiple recaptcha support. The invisible version of the reCAPTCHA with the automatic render mode
+is now supported, please read the related documentation below.
 
 ----
 
@@ -33,7 +34,7 @@ RECAPTCHA_PUBLIC_KEY = 'your public key'
 
 If you have to create the apikey for the domains managed by your django project, you can visit this <a href="https://www.google.com/recaptcha/admin">website</a>.
 
-## Usage
+## "I'm not a robot" Usage 
 ### Form and Widget
 You can simply create a reCaptcha enabled form with the field provided by this app:
 
@@ -47,7 +48,8 @@ class ExampleForm(forms.Form):
     [...]
 ```
 
-You can pass some parameters into the widget contructor:
+You can set the private key on the "private_key" argument of the field contructor and you can pass some
+parameters into the widget contructor:
 
 ```python
 class ReCaptchaWidget(Widget):
@@ -110,19 +112,8 @@ or
 
 For language codes take a look to <a href="https://developers.google.com/recaptcha/docs/language">this page</a>.
 
-### Test unit support
-You can't simulate api calls in your test, but you can disable the recaptcha field and let your test works.
-
-Just set the RECAPTCHA_DISABLE env variable in your test:
-
-```python
-os.environ['RECAPTCHA_DISABLE'] = 'True'
-```
-
-Warning: you can use any word in place of "True", the clean function will check only if the variable exists.
-
-## Samples
-### Simple render example
+### Samples
+#### Simple render example
 
 Just create a form with the reCaptcha field and follow this template example:
 
@@ -142,7 +133,7 @@ Just create a form with the reCaptcha field and follow this template example:
 </html>
 ```
 
-### Explicit render example
+#### Explicit render example
 
 Create a form with explicit=True and write your template like this:
 
@@ -163,7 +154,7 @@ Create a form with explicit=True and write your template like this:
 </html>
 ```
 
-### Multiple render example
+#### Multiple render example
 
 You can render multiple reCaptcha using only forms with explicit=True:
 
@@ -189,7 +180,7 @@ You can render multiple reCaptcha using only forms with explicit=True:
 </html>
 ```
 
-### Mix manual render with app support
+#### Mix manual render with app support
 
 You can use the app explicit render support also is you implement reCaptcha in one of your form in the template:
 
@@ -215,6 +206,137 @@ You can use the app explicit render support also is you implement reCaptcha in o
     </body>
 </html>
 ```
+
+## "Invisible" Usage
+The implementation and the usage of this kind of binding is simpler and you don't need to use the explicit
+rendering to add multiple instances of the reCAPTCHA.
+
+### Form and Widget
+You can simply create a reCaptcha enabled form with the field provided by this app:
+
+```python
+from snowpenguin.django.recaptcha2.fields import ReCaptchaField
+from snowpenguin.django.recaptcha2.widgets import ReCaptchaHiddenInput
+
+class ExampleForm(forms.Form):
+    [...]
+    captcha = ReCaptchaField(widget=ReCaptchaHiddenInput())
+    [...]
+```
+
+You can set the private key on the "private_key" argument of the field contructor.
+
+### Templating
+You just need to add the "recaptcha_init" tag on the head of your page and to place the invisible reCAPTCHA
+submit button inside your form:
+
+```django
+<form id='myform1' action="?" method="POST">
+      {% csrf_token %}
+      {{ form }}
+      {% recaptcha_invisible_button submit_label='Submit' %}
+</form>
+```
+
+You can customize the button with the parameters included in its definition:
+
+```python
+def recaptcha_invisible_button(public_key=None, submit_label=None, extra_css_classes=None,
+                               form_id=None, custom_callback=None):
+``` 
+
+You can override the reCAPTCHA public key, change the label of the button, apply extra css classes, force
+the button to submit a form identified by id or provide the name of a custom callback. Please check the samples
+to understand how it works.
+
+### Samples
+#### Simple usage
+
+```django
+{% load recaptcha2 %}
+<html>
+  <head>
+      {% recaptcha_init %}
+  </head>
+  <body>
+    <form action="?" method="POST">
+      {% csrf_token %}
+      {{ form }}
+      {% recaptcha_invisible_button submit_label='Submit' %}
+    </form>
+  </body>
+</html>
+```
+
+**Note:** The button will looking for the first "form" element using che "Element.closest" function. IE
+doesn't support it, so please use a polyfill (for example https://polyfill.io). If you don't want to
+add extra javascript libraries, please use the form id or a custom callback.
+
+#### Form id
+
+```django
+{% load recaptcha2 %}
+<html>
+  <head>
+      {% recaptcha_init %}
+  </head>
+  <body>
+    <form id='myform' action="?" method="POST">
+      {% csrf_token %}
+      {{ form }}
+      {% recaptcha_invisible_button submit_label='Submit' form_id='myform' %}
+    </form>
+  </body>
+</html>
+```
+
+#### Custom callback
+
+```django
+{% load recaptcha2 %}
+<html>
+  <head>
+      {% recaptcha_init %}
+  </head>
+  <body>
+    <form id='myform' action="?" method="POST">
+      {% csrf_token %}
+      {{ form }}
+      {% recaptcha_invisible_button submit_label='Submit' custom_callback='mycallback' %}
+      <script>
+          function mycallback(token) {
+              someFunction();
+              document.getElementById("myform").submit();
+          }
+      </script>
+    </form>
+  </body>
+</html>
+```
+
+### TODO/ISSUES
+
+- Only the automatic binding is supported, but you can add the dummy widget inside your form and the required
+javascript code in your template in order to use the programmatically bind and invoke.
+
+- You can only configure one reCAPTCHA key in the configuration. This isn't a real problem because if you want 
+to use the invisible reCAPTCHA you don't need to use the "old one" anymore. If you need to use both implementations you
+can still set the public and private keys in the fields, tags and widgets constructors.
+
+- ReCaptchaHiddenInput could be the starting point for the creation of some "I'm not a robot" reCAPTCHA template
+tags to use in place of the ReCaptchaWidget (maybe in a future release)
+
+## Testing
+### Test unit support
+You can't simulate api calls in your test, but you can disable the recaptcha field and let your test works.
+
+Just set the RECAPTCHA_DISABLE env variable in your test:
+
+```python
+os.environ['RECAPTCHA_DISABLE'] = 'True'
+```
+
+Warning: you can use any word in place of "True", the clean function will check only if the variable exists.
 
 ### Test unit with recaptcha2 disabled
 ```python

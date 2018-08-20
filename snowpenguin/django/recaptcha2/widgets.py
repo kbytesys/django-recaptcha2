@@ -1,7 +1,7 @@
 from random import randint
 
 from django.conf import settings
-from django.forms.widgets import Widget
+from django.forms.widgets import Widget, Input
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
 
@@ -43,6 +43,16 @@ class ReCaptchaWidget(Widget):
                 'expired_callback': self.expired_callback
             })
         )
+
+    def value_from_datadict(self, data, files, name):
+        return [data.get('g-recaptcha-response', None)]
+
+
+class ReCaptchaHiddenInput(Input):
+    input_type = 'hidden'
+
+    def render(self, name, value, attrs=None, renderer=None):
+        return ''
 
     def value_from_datadict(self, data, files, name):
         return [data.get('g-recaptcha-response', None)]

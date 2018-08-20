@@ -4,11 +4,15 @@ from django.forms import Form
 from django.test import TestCase
 
 from snowpenguin.django.recaptcha2.fields import ReCaptchaField
-from snowpenguin.django.recaptcha2.widgets import ReCaptchaWidget
+from snowpenguin.django.recaptcha2.widgets import ReCaptchaWidget, ReCaptchaHiddenInput
 
 
 class RecaptchaTestForm(Form):
     recaptcha = ReCaptchaField(widget=ReCaptchaWidget())
+
+
+class RecaptchaInvisibleTestForm(Form):
+    recaptcha = ReCaptchaField(widget=ReCaptchaHiddenInput())
 
 
 class TestRecaptchaForm(TestCase):
@@ -22,6 +26,15 @@ class TestRecaptchaForm(TestCase):
     def test_dummy_error(self):
         del os.environ['RECAPTCHA_DISABLE']
         form = RecaptchaTestForm({})
+        self.assertFalse(form.is_valid())
+
+    def test_invisible_dummy_validation(self):
+        form = RecaptchaInvisibleTestForm({})
+        self.assertTrue(form.is_valid())
+
+    def test_invisible_dummy_error(self):
+        del os.environ['RECAPTCHA_DISABLE']
+        form = RecaptchaInvisibleTestForm({})
         self.assertFalse(form.is_valid())
 
     def tearDown(self):

@@ -1,0 +1,10 @@
+<button id="recaptcha-invisible-{{ generated_id }}" class="g-recaptcha{% if extra_css_classes %}{{ extra_css_classes }}{% endif %}" data-sitekey="{{ public_key }}" data-callback="{% if custom_callback %}{{ custom_callback }}{% endif %}{% if not custom_callback %}recaptcha_onSubmit_{{ generated_id }}{% endif %}">{{ submit_label }}</button>
+{% if not custom_callback %}<script>
+    function recaptcha_onSubmit_{{ generated_id }}() {
+    {% if form_id %}document.getElementById("{{ form_id }}").submit();{% endif %}
+    {% if not form_id %}
+        var form_element = document.getElementById("recaptcha-invisible-{{ generated_id }}").closest("form");
+        if (form_element) { form_element.submit(); }
+    {% endif %}
+    }
+</script>{% endif %}

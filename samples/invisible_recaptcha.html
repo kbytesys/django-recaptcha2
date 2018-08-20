@@ -1,0 +1,28 @@
+{% load recaptcha2 %}
+<html>
+  <head>
+      {% recaptcha_init %}
+  </head>
+  <body>
+    <form id='myform1' action="?" method="POST">
+      {% csrf_token %}
+      {{ form }}
+      {% recaptcha_invisible_button submit_label='Submit' %}
+    </form>
+    <form id='myform2' action="?" method="POST">
+      {% csrf_token %}
+      {{ form }}
+      {% recaptcha_invisible_button submit_label='Submit' form_id='myform2' %}
+    </form>
+    <form id='myform3' action="?" method="POST">
+      {% csrf_token %}
+      {{ form }}
+      {% recaptcha_invisible_button submit_label='Submit' custom_callback='mycallback' %}
+      <script>
+          function mycallback(token) {
+              document.getElementById("myform3").submit();
+          }
+      </script>
+    </form>
+  </body>
+</html>
