@@ -5,6 +5,8 @@ This integration app implements a recaptcha field for <a href="https://developer
 with explicit rendering and multiple recaptcha support. The invisible version of the reCAPTCHA with the automatic render mode
 is now supported, please read the related documentation below.
 
+Are you looking for the Google reCaptcha v3? Take a look to the dedicated repository https://github.com/kbytesys/django-recaptcha3
+
 ----
 
 ## How to install
