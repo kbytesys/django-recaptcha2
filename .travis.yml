@@ -8,8 +8,9 @@ python:
 install:
 - pip install tox-travis
 - python setup.py -q install
-sonarcloud:
-  organization: "no-organization"
+addons:
+  sonarcloud:
+    organization: "no-organization"
 script:
 - tox
 - sonar-scanner -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_TOKEN
