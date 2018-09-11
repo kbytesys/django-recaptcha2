@@ -19,9 +19,6 @@ setup(
     install_requires=[
         'requests'
     ],
-    dependency_links=[
-        'git+git://github.com/kbytesys/django-setuptest.git@feature/pep8_config',
-    ],
     tests_require=(
         ['django-setuptest'],
     ),
