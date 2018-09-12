@@ -10,10 +10,12 @@ install:
 - python setup.py -q install
 addons:
   sonarcloud:
-    organization: -
+    organization: "kbytesys-github"
+    token:
+      secure: $SONAR_TOKEN
 script:
 - tox
-- sonar-scanner -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_TOKEN
+- sonar-scanner
 deploy:
   provider: pypi
   skip_existing: true
