@@ -32,6 +32,9 @@ And add your reCaptcha private and public key to your django settings.py:
 ```python
 RECAPTCHA_PRIVATE_KEY = 'your private key'
 RECAPTCHA_PUBLIC_KEY = 'your public key'
+# If you require reCaptcha to be loaded from somewhere other than https://google.com
+# (e.g. to bypass firewall restrictions), you can specify what proxy to use.
+# RECAPTCHA_PROXY_HOST = 'https://recaptcha.net'
 ```
 
 If you have to create the apikey for the domains managed by your django project, you can visit this <a href="https://www.google.com/recaptcha/admin">website</a>.

@@ -35,6 +35,7 @@ def recaptcha_invisible_button(public_key=None, submit_label=None, extra_css_cla
     return {
         'generated_id': generated_id,
         'public_key': public_key or settings.RECAPTCHA_PUBLIC_KEY,
+        'recaptcha_host': getattr(settings, 'RECAPTCHA_PROXY_HOST', 'https://google.com'),
         'form_id': form_id,
         'submit_label': submit_label or _('Submit'),
         'extra_css_classes': extra_css_classes,
