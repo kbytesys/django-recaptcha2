@@ -11,15 +11,23 @@ register = template.Library()
 def recaptcha_key():
     return settings.RECAPTCHA_PUBLIC_KEY
 
+def recaptcha_common_init(language, additional_variables):
+    common_variables = {
+        'language': language,
+        'recaptcha_host': getattr(settings, 'RECAPTCHA_PROXY_HOST', 'https://google.com')    
+    }
+    common_variables.update(additional_variables)
+    return common_variables
+
 
 @register.inclusion_tag('snowpenguin/recaptcha/recaptcha_init.html')
 def recaptcha_init(language=None):
-    return {'explicit': False, 'language': language}
+    return recaptcha_common_init(language, {'explicit': False})
 
 
 @register.inclusion_tag('snowpenguin/recaptcha/recaptcha_init.html')
 def recaptcha_explicit_init(language=None):
-    return {'explicit': True, 'language': language}
+    return recaptcha_common_init(language, {'explicit': True})
 
 
 @register.inclusion_tag('snowpenguin/recaptcha/recaptcha_explicit_support.html')
@@ -35,7 +43,6 @@ def recaptcha_invisible_button(public_key=None, submit_label=None, extra_css_cla
     return {
         'generated_id': generated_id,
         'public_key': public_key or settings.RECAPTCHA_PUBLIC_KEY,
-        'recaptcha_host': getattr(settings, 'RECAPTCHA_PROXY_HOST', 'https://google.com'),
         'form_id': form_id,
         'submit_label': submit_label or _('Submit'),
         'extra_css_classes': extra_css_classes,
