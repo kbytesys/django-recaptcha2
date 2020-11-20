@@ -26,7 +26,6 @@ msgid "reCaptcha invalid or expired, try again"
 msgstr "reCaptcha non valido o scaduto, riprova"
 
 #: recaptcha2/fields.py:75
-#| msgid "reCaptcha invalid or expired, try again"
 msgid "reCaptcha response from Google not valid, try again"
 msgstr "reCaptcha non valido o scaduto, riprova"
 
