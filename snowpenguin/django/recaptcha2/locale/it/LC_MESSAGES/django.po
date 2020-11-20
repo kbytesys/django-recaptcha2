@@ -17,18 +17,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.5\n"
 
-#: recaptcha2/fields.py:52 recaptcha2/fields.py:66
+#: snowpenguin/django/recaptcha2/fields.py:52
+#: snowpenguin/django/recaptcha2/fields.py:66
 msgid "Connection to reCaptcha server failed"
 msgstr "Connessione al server di reCaptcha fallita"
 
-#: recaptcha2/fields.py:70
+#: snowpenguin/django/recaptcha2/fields.py:70
 msgid "reCaptcha invalid or expired, try again"
 msgstr "reCaptcha non valido o scaduto, riprova"
 
-#: recaptcha2/fields.py:75
+#: snowpenguin/django/recaptcha2/fields.py:75
 msgid "reCaptcha response from Google not valid, try again"
 msgstr "reCaptcha non valido o scaduto, riprova"
 
-#: recaptcha2/templatetags/recaptcha2.py:47
+#: snowpenguin/django/recaptcha2/templatetags/recaptcha2.py:47
 msgid "Submit"
 msgstr "Invia"
