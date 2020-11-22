@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-23 11:26+0000\n"
+"POT-Creation-Date: 2020-11-20 09:02+0000\n"
 "PO-Revision-Date: 2015-07-23 13:31+0200\n"
 "Last-Translator: Kbyte <kbytesys@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -17,12 +17,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.5\n"
 
-#: snowpenguin/django/recaptcha2/fields.py:33
-#: snowpenguin/django/recaptcha2/fields.py:46
+#: snowpenguin/django/recaptcha2/fields.py:52
+#: snowpenguin/django/recaptcha2/fields.py:66
 msgid "Connection to reCaptcha server failed"
 msgstr "Connessione al server di reCaptcha fallita"
 
-#: snowpenguin/django/recaptcha2/fields.py:50
+#: snowpenguin/django/recaptcha2/fields.py:70
 msgid "reCaptcha invalid or expired, try again"
 msgstr "reCaptcha non valido o scaduto, riprova"
 
+#: snowpenguin/django/recaptcha2/fields.py:75
+msgid "reCaptcha response from Google not valid, try again"
+msgstr "reCaptcha non valido o scaduto, riprova"
+
+#: snowpenguin/django/recaptcha2/templatetags/recaptcha2.py:47
+msgid "Submit"
+msgstr "Invia"
